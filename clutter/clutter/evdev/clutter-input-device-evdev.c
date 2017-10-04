@@ -209,6 +209,17 @@ clutter_input_device_evdev_is_grouped (ClutterInputDevice *device,
     libinput_device_get_device_group (other_libinput_device);
 }
 
+static gboolean
+clutter_input_device_evdev_has_key (ClutterInputDevice *device,
+                                    guint code)
+{
+  struct libinput_device *libinput_device;
+
+  libinput_device = clutter_evdev_input_device_get_libinput_device (device);
+
+  return libinput_device_has_key (libinput_device, code);
+}
+
 static void
 clutter_input_device_evdev_class_init (ClutterInputDeviceEvdevClass *klass)
 {
@@ -223,6 +234,7 @@ clutter_input_device_evdev_class_init (ClutterInputDeviceEvdevClass *klass)
   klass->is_mode_switch_button = clutter_input_device_evdev_is_mode_switch_button;
   klass->get_group_n_modes = clutter_input_device_evdev_get_group_n_modes;
   klass->is_grouped = clutter_input_device_evdev_is_grouped;
+  klass->has_key = clutter_input_device_evdev_has_key;
 
   obj_props[PROP_DEVICE_MATRIX] =
     g_param_spec_boxed ("device-matrix",

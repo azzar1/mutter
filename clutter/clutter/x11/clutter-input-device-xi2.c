@@ -87,6 +87,13 @@ clutter_input_device_xi2_is_grouped (ClutterInputDevice *device,
   return FALSE;
 }
 
+static gboolean
+clutter_input_device_xi2_has_key (ClutterInputDevice *device,
+                                  gint code)
+{
+  return -1;
+}
+
 static void
 clutter_input_device_xi2_class_init (ClutterInputDeviceXI2Class *klass)
 {
@@ -97,6 +104,7 @@ clutter_input_device_xi2_class_init (ClutterInputDeviceXI2Class *klass)
 
   device_class->keycode_to_evdev = clutter_input_device_xi2_keycode_to_evdev;
   device_class->is_grouped = clutter_input_device_xi2_is_grouped;
+  device_class->has_key = clutter_input_device_xi2_has_key;
 }
 
 static void

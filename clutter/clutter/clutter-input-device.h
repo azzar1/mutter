@@ -172,6 +172,10 @@ CLUTTER_AVAILABLE_IN_ALL
 gboolean                  clutter_input_device_is_grouped       (ClutterInputDevice *device,
                                                                  ClutterInputDevice *other_device);
 
+CLUTTER_AVAILABLE_IN_ALL
+int                    clutter_input_device_has_key (ClutterInputDevice *device, guint code)
+
+
 G_END_DECLS
 
 #endif /* __CLUTTER_INPUT_DEVICE_H__ */

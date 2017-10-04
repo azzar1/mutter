@@ -163,6 +163,9 @@ struct _ClutterInputDeviceClass
 
   gboolean (* is_grouped) (ClutterInputDevice *device,
                            ClutterInputDevice *other_device);
+
+  gint (* has_key) (ClutterInputDevice *device,
+                    guint code);
 };
 
 /* Platform-dependent interface */
