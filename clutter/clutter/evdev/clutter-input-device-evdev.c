@@ -217,7 +217,7 @@ clutter_input_device_evdev_has_key (ClutterInputDevice *device,
 
   libinput_device = clutter_evdev_input_device_get_libinput_device (device);
 
-  return libinput_device_has_key (libinput_device, code);
+  return libinput_device_keyboard_has_key (libinput_device, code);
 }
 
 static void
