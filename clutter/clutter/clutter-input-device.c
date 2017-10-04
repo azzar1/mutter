@@ -2291,7 +2291,6 @@ gint
 clutter_input_device_has_key (ClutterInputDevice *device, guint code)
 {
   g_return_val_if_fail (CLUTTER_IS_INPUT_DEVICE (device), FALSE);
-  //g_return_val_if_fail (CLUTTER_IS_INPUT_DEVICE (other_device), FALSE);
 
   return CLUTTER_INPUT_DEVICE_GET_CLASS (device)->has_key (device, code);
 }
