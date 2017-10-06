@@ -164,8 +164,7 @@ struct _ClutterInputDeviceClass
   gboolean (* is_grouped) (ClutterInputDevice *device,
                            ClutterInputDevice *other_device);
 
-  gint (* has_key) (ClutterInputDevice *device,
-                    guint code);
+  gint (* is_alphanumeric_keyboard) (ClutterInputDevice *device);
 };
 
 /* Platform-dependent interface */

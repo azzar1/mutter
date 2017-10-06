@@ -173,9 +173,7 @@ gboolean                  clutter_input_device_is_grouped       (ClutterInputDev
                                                                  ClutterInputDevice *other_device);
 
 CLUTTER_AVAILABLE_IN_ALL
-int                    clutter_input_device_has_key (ClutterInputDevice *device,
-                                                     guint code);
-
+int                    clutter_input_device_is_alphanumeric_keyboard (ClutterInputDevice *device);
 
 G_END_DECLS
 

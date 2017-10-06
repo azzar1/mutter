@@ -210,14 +210,37 @@ clutter_input_device_evdev_is_grouped (ClutterInputDevice *device,
 }
 
 static gboolean
-clutter_input_device_evdev_has_key (ClutterInputDevice *device,
-                                    guint code)
+clutter_input_device_evdev_is_alphanumeric_keyboard (ClutterInputDevice *device)
 {
   struct libinput_device *libinput_device;
+  ClutterInputDeviceType type;
+  guint i;
+
+  type =  clutter_input_device_get_device_type (device);
+  if (type != CLUTTER_KEYBOARD_DEVICE)
+    return FALSE;
 
   libinput_device = clutter_evdev_input_device_get_libinput_device (device);
+  if (!libinput_device)
+    return FALSE;
 
-  return libinput_device_keyboard_has_key (libinput_device, code);
+  for (i = KEY_1; i <= KEY_0; i++)
+    if (libinput_device_keyboard_has_key (libinput_device, i) != 1)
+      return FALSE;
+
+  for (i = KEY_Q; i <= KEY_P; i++)
+    if (libinput_device_keyboard_has_key (libinput_device, i) != 1)
+      return FALSE;
+
+  for (i = KEY_A; i <= KEY_L; i++)
+    if (libinput_device_keyboard_has_key (libinput_device, i) != 1)
+      return FALSE;
+
+  for (i = KEY_Z; i <= KEY_M; i++)
+    if (libinput_device_keyboard_has_key (libinput_device, i) != 1)
+      return FALSE;
+
+  return TRUE;
 }
 
 static void
@@ -234,7 +257,7 @@ clutter_input_device_evdev_class_init (ClutterInputDeviceEvdevClass *klass)
   klass->is_mode_switch_button = clutter_input_device_evdev_is_mode_switch_button;
   klass->get_group_n_modes = clutter_input_device_evdev_get_group_n_modes;
   klass->is_grouped = clutter_input_device_evdev_is_grouped;
-  klass->has_key = clutter_input_device_evdev_has_key;
+  klass->is_alphanumeric_keyboard = clutter_input_device_evdev_is_alphanumeric_keyboard;
 
   obj_props[PROP_DEVICE_MATRIX] =
     g_param_spec_boxed ("device-matrix",
